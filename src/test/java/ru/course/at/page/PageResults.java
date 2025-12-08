@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class PageResults {
-    @FindBy(id = "APjFqb")
+    @FindBy(css = "textarea[class='gLFyf']")
     private WebElement searchField;
 
     @FindBy(css = ":not(.tjvcx)>cite")
@@ -18,13 +18,13 @@ public class PageResults {
         result.get(num).click();
     }
 
-    public String getTextFromSearchField(){
-       String val = searchField.getAttribute("value");
-       System.out.println("Текст не совпал " + val);
-       return val;
+    public String getTextFromSearchField() {
+        String val = searchField.getAttribute("value");
+        System.out.println("Текст не совпал " + val);
+        return val;
     }
 
-    public  PageResults(WebDriver driver){
+    public PageResults(WebDriver driver) {
         PageFactory.initElements(driver, this);
 
     }

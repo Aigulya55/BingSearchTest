@@ -13,7 +13,10 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BingSearchTest {
+    public static final String SELENIUM = "Selenium";
     private WebDriver driver;
+    private MainPage mp;
+    private PageResults rp;
 
     @BeforeEach
     public void setUP() {
@@ -21,6 +24,8 @@ public class BingSearchTest {
         this.driver.manage().window().maximize();
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50L));
         this.driver.get("https://www.google.com/");
+        mp = new MainPage(driver);
+        rp = new PageResults(driver);
     }
 
     @AfterEach
@@ -30,25 +35,14 @@ public class BingSearchTest {
 
     @Test
     public void searchResultsTest() {
-        String input = "Selenium";
-        MainPage mp = new MainPage(driver);
-        mp.sendText(input);
-
-        PageResults rp = new PageResults(driver);
+        mp.sendText(SELENIUM);
         rp.clickElement(0);
-
         assertEquals("https://www.selenium.dev/", driver.getCurrentUrl(), "Сайт ненайден");
     }
 
     @Test
     public void searchFieldTest() {
-        String input = "Selenium";
-        MainPage mp = new MainPage(driver);
-        mp.sendText(input);
-
-        PageResults rp = new PageResults(driver);
-        assertEquals(input,rp.getTextFromSearchField(), "Неверное значение");
+        mp.sendText(SELENIUM);
+        assertEquals(SELENIUM, rp.getTextFromSearchField(), "Неверное значение");
     }
 }
-
-

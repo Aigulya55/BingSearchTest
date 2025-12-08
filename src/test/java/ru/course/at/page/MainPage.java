@@ -6,15 +6,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MainPage {
-     @FindBy(id = "APjFqb")
+    @FindBy(css = "textarea[class='gLFyf']")
     private WebElement searchField;
 
-    public void sendText(String text){
+    public void sendText(String text) {
         searchField.sendKeys(text);
         searchField.submit();
         System.out.println("Введе текст: " + text);
     }
-    public MainPage(WebDriver driver){
+
+    public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 }
